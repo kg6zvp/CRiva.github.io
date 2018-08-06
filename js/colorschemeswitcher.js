@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $("#palleteChanger").click(function(){
         $.ajax({
-            url: 'https://colormind.io/api/',
+            url: 'http://colormind.io/api/',
             type: 'GET',
             data: {model: 'default'}
         })
