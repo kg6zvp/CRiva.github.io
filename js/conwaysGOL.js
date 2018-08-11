@@ -1,6 +1,5 @@
 $(document).ready(function() {
     $("#conwayStart").click(function(){
-        let MAP = make_map();
         const NODE_DIAMETER = 10;
         const NODE_RADIUS = NODE_DIAMETER/2;
         const WIDTH = $(window).width();
@@ -9,9 +8,6 @@ $(document).ready(function() {
         const COLUMN_LENGTH = HEIGHT/NODE_DIAMETER;
         console.log(ROW_LENGTH);
         console.log(COLUMN_LENGTH);
-
-
-
 
         class Node {
             constructor(posx, posy, status){
@@ -51,16 +47,18 @@ $(document).ready(function() {
             }
         }
 
+        let MAP = make_map();
+
         function make_map(){
             let tmp = [];
             for (i = 0; i < ROW_LENGTH; i++) { 
                 tmp.push([]);
-                $("#map").append("<span id='row${i.toString()}' style='width: ${WIDTH} px;'></span>");
+                $("#map").append("<span id='row"+i.toString()+"' style='width: "+WIDTH.toString()+" px;'></span>");
                 for (j = 0; j < COLUMN_LENGTH; j++) {
                     let status = Math.round(Math.random() * .55);
                     const stat_hash = {0:"dead", 1:"alive"};
                     tmp[i].push(new Node(i, j, status));
-                    $("#row${i.toString()}").append("<span id='(${i.toString()},${j.toString()})' class='${stat_hash[status]}' style='width: ${NODE_DIAMETER};'></span>");
+                    $("#row"+i.toString()).append("<span id='("+i.toString()+","+j.toString()+")' class='"+stat_hash[status]+"' style='width: "+NODE_DIAMETER+";'></span>");
                 }
             }
             return tmp;
