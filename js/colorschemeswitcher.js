@@ -1,9 +1,9 @@
 $(document).ready(function() {
     $("#palleteChanger").click(function(){
         $.ajax({
-            url: 'http://colormind.io/api/',
+            url: 'https://coolors.co/browser/latest/1',
             type: 'GET',
-            data: {model: 'default'}
+            dataType: 'html'
         })
         .done(function(e) {
             console.log("success");

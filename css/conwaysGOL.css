@@ -1,0 +1,15 @@
+.alive {
+    background-color: blue; 
+}
+
+.dead {
+    display: none;
+}
+
+.map {
+    z-index: 1;
+}
+
+.top {
+    z-index: 2;
+}
