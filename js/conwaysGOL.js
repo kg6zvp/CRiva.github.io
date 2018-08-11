@@ -4,8 +4,8 @@ $(document).ready(function() {
     const NODE_RADIUS = NODE_DIAMETER/2;
     const WIDTH = $(window).width();
     const HEIGHT = $(window).height();
-    const ROW_LENGTH = WIDTH/NODE_DIAMETER
-    const COLUMN_LENGTH = HEIGHT/NODE_DIAMETER
+    const ROW_LENGTH = WIDTH/NODE_DIAMETER;
+    const COLUMN_LENGTH = HEIGHT/NODE_DIAMETER;
 
 
 
