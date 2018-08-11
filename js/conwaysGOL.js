@@ -18,7 +18,7 @@ $(document).ready(function() {
         }
 
         step(){
-            let this.neighbors = this.count_neighbors();
+            this.neighbors = this.count_neighbors();
             /*
             Any live cell with fewer than two live neighbors dies, as if by under population.
             Any live cell with two or three live neighbors lives on to the next generation.
@@ -38,7 +38,7 @@ $(document).ready(function() {
             let count = 0;
             for (i = -1; i < 2; i++) {
                 for(j = -1; j < 2; j++) {
-                    if (i == 0 and j == 0) count += 0;
+                    if (i == 0 && j == 0) continue;
                     if (MAP[(this.posx+i) % ROW_LENGTH][(this.posy+j) % COLUMN_LENGTH].status > 0) {
                         count += 1;
                     }
@@ -48,7 +48,7 @@ $(document).ready(function() {
         }
     }
 
-    make_map(){
+    function make_map(){
         let tmp = [];
         for (i = 0; i < ROW_LENGTH; i++) { 
             tmp.push([]);
@@ -63,13 +63,13 @@ $(document).ready(function() {
         return tmp;
     }
 
-    draw_map(the_map){
+    function draw_map(the_map){
         for(i = 0; i < the_map.length; i++){
 
         }
     }
 
-    update_nodes(){
+    function update_nodes(){
 
     }
 }
