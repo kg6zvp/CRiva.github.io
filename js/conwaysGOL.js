@@ -1,6 +1,6 @@
 let WIDTH = $(window).width()*3;
 let HEIGHT = $(window).height()*3;
-let NODE_SIZE = 60;
+let NODE_SIZE = 70;
 let NODE_DIAMETER = Math.round(WIDTH/(NODE_SIZE*3));
 let NODE_RADIUS = NODE_DIAMETER/2;
 let ROW_LENGTH = Math.floor(HEIGHT/NODE_DIAMETER);
@@ -11,17 +11,13 @@ $(document).ready(function() {
     let MAP = make_map();
     $('.node').click(function() {
         $(this).removeClass('alive').removeClass('dead').addClass('custom_life');
-        console.log($(this).attr('id'));
-
         let x = $(this).attr('id').match(/[0-9]+/g)[0]
         let y = $(this).attr('id').match(/[0-9]+/g)[1];
-        console.log(x);
-        console.log(y);
         MAP[x][y].status = 2;
     });
     window.setInterval(function (){
         update(MAP);
-    }, 1000);
+    }, 1500);
 });
 
 
@@ -56,22 +52,26 @@ class Node {
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('dead').addClass('alive');
         }
         /* EXTENDED RULES
-        Any live cell in state 2 with more than 6 neighbors dies by mass overpopulation.
-        Any live cell in state 2 with less than 1 neighbor will die by mass underpopulation.
+        Any live cell in state 2 with more than 2 neighbors dies by subtle overpopulation.
+        Any live cell in state 2 with less than 2 neighbor will die subtle underpopulation.
         Any live cell in state 1 with exactly 1 state 2 neighbor will transform to state 2.
-        A dead cell cannot become state 2, only user interaction can cause that.
+        Any dead cell with 5-6 state 2 neighbors will come alive.
         */
-        if (this.total_neighbors > 6 && this.status == 2) {
+        if (this.total_neighbors > 2 && this.status == 2) {
             this.status = 0;
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('custom_life').addClass('dead');
         }
-        if (this.total_neighbors < 1 && this.status == 2) {
+        if (this.total_neighbors < 2 && this.status == 2) {
             this.status = 0;
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('custom_life').addClass('dead');
         }
         if (this.neighbors_state2 == 1 && this.status == 1) {
             this.status = 2;
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('alive').addClass('custom_life');
+        }
+        if ((this.neighbors_state2 > 4 && this.neighbors_state2 < 7) && this.status == 0) {
+            this.status = 2;
+            $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('dead').addClass('custom_life');
         }
     }
 
