@@ -1,15 +1,36 @@
+:root{
+    --map_color: #70C1B3;
+    --alive_color: #247BA0;
+}
+
 .alive {
-    background-color: blue; 
+    background-color: var(--alive_color); 
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.gol_row {
+    margin-top: -4px;
+    margin-bottom: -4px;
 }
 
 .dead {
-    display: none;
+    display: inline-block; 
+    background-color: var(--map_color); 
 }
 
 .map {
-    z-index: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: var(--map_color); 
+
 }
 
 .top {
-    z-index: 2;
+    z-index: 1;
 }
