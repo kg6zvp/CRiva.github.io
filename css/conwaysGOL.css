@@ -1,10 +1,17 @@
 :root{
-    --map_color: #70C1B3;
-    --alive_color: #247BA0;
+    --map_color: linear-gradient(to bottom right, #389AA3, #3AD7E6);
+    --alive_color: #4864B2;
+    --state2_color: #FFA555;
 }
 
 .alive {
     background-color: var(--alive_color); 
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.custom_life {
+    background-color: var(--state2_color);
     display: inline-block;
     border-radius: 4px;
 }
@@ -16,7 +23,7 @@
 
 .dead {
     display: inline-block; 
-    background-color: var(--map_color); 
+    background-color: transparent; 
 }
 
 .map {
@@ -27,7 +34,7 @@
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    background-color: var(--map_color); 
+    background: var(--map_color); 
 
 }
 

@@ -3,18 +3,22 @@ body {
     height: 100%;
 }
 
+.main {
+    pointer-events: none;
+}
+
 .center-screen {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    position: absolute;
+    top: 40%;
+    left: 40%;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    min-height: 100vh;
 }
 
 .center-card {
     padding: 5vh 10vh 5vh 10vh;
-    background-color: #92B4F4;
+    background: linear-gradient(to bottom right, #43CA54, #3EDF52);
     border-radius: 5px;
     box-shadow: 0 3px 7px 0;
 

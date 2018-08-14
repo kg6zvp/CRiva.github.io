@@ -9,6 +9,16 @@ let COLUMN_LENGTH = Math.floor(WIDTH/NODE_DIAMETER);
 
 $(document).ready(function() {
     let MAP = make_map();
+    $('.node').click(function() {
+        $(this).removeClass('alive').removeClass('dead').addClass('custom_life');
+        console.log($(this).attr('id'));
+
+        let x = $(this).attr('id').match(/[0-9]+/g)[0]
+        let y = $(this).attr('id').match(/[0-9]+/g)[1];
+        console.log(x);
+        console.log(y);
+        MAP[x][y].status = 2;
+    });
     window.setInterval(function (){
         update(MAP);
     }, 1000);
@@ -23,25 +33,45 @@ class Node {
     }
 
     step(MAP){
-        this.neighbors = this.count_neighbors(MAP);
-        /*
+        this.neighbors_state1 = this.count_neighbors(MAP, 1);
+        this.neighbors_state2 = this.count_neighbors(MAP, 2);
+        this.total_neighbors = this.neighbors_state1 + this.neighbors_state2;
+        /* NORMAL RULES
         Any live cell with fewer than two live neighbors dies, as if by under population.
         Any live cell with two or three live neighbors lives on to the next generation.
         Any live cell with more than three live neighbors dies, as if by overpopulation.
         Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
         */
-        if (this.neighbors < 2 && this.status == 1) {
+        if (this.total_neighbors < 2 && this.status == 1) {
             this.status = 0;
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('alive').addClass('dead');
         }
         // if ((this.neighbors == 2 || this.neighbors == 3) && this.status == 1) 
-        if (this.neighbors > 3 && this.status == 1) {
+        if (this.total_neighbors > 3 && this.status == 1) {
             this.status = 0;
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('alive').addClass('dead');
         }
-        if (this.neighbors == 3 && this.status == 0) {
+        if (this.total_neighbors == 3 && this.status == 0) {
             this.status = 1;
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('dead').addClass('alive');
+        }
+        /* EXTENDED RULES
+        Any live cell in state 2 with more than 6 neighbors dies by mass overpopulation.
+        Any live cell in state 2 with less than 1 neighbor will die by mass underpopulation.
+        Any live cell in state 1 with exactly 1 state 2 neighbor will transform to state 2.
+        A dead cell cannot become state 2, only user interaction can cause that.
+        */
+        if (this.total_neighbors > 6 && this.status == 2) {
+            this.status = 0;
+            $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('custom_life').addClass('dead');
+        }
+        if (this.total_neighbors < 1 && this.status == 2) {
+            this.status = 0;
+            $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('custom_life').addClass('dead');
+        }
+        if (this.neighbors_state2 == 1 && this.status == 1) {
+            this.status = 2;
+            $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('alive').addClass('custom_life');
         }
     }
 
@@ -53,17 +83,16 @@ class Node {
         return MAP[this.modulo((this.posx+x), ROW_LENGTH)][this.modulo((this.posy+y), COLUMN_LENGTH)].status;
     }
 
-    count_neighbors(MAP){
+    count_neighbors(MAP, state){
         let count = 0;
-        if (this.nodeState(MAP, -1, -1) > 0) count++;
-        if (this.nodeState(MAP,  0, -1) > 0) count++;
-        if (this.nodeState(MAP,  1, -1) > 0) count++;
-        if (this.nodeState(MAP, -1,  0) > 0) count++;
-        if (this.nodeState(MAP,  1,  0) > 0) count++;
-        if (this.nodeState(MAP, -1,  1) > 0) count++;
-        if (this.nodeState(MAP,  0,  1) > 0) count++;
-        if (this.nodeState(MAP,  1,  1) > 0) count++;
-        // console.log(count.toString());
+        if (this.nodeState(MAP, -1, -1) == state) count++;
+        if (this.nodeState(MAP,  0, -1) == state) count++;
+        if (this.nodeState(MAP,  1, -1) == state) count++;
+        if (this.nodeState(MAP, -1,  0) == state) count++;
+        if (this.nodeState(MAP,  1,  0) == state) count++;
+        if (this.nodeState(MAP, -1,  1) == state) count++;
+        if (this.nodeState(MAP,  0,  1) == state) count++;
+        if (this.nodeState(MAP,  1,  1) == state) count++;
         return count;
     }
 }
@@ -77,7 +106,7 @@ function make_map(){
             let status = Math.round(Math.random() * .66);
             const stat_hash = {0:"dead", 1:"alive"};
             tmp[i].push(new Node(i, j, status));
-            $("#row"+i.toString()).append("<div id='("+i.toString()+","+j.toString()+")' class='"+stat_hash[status]+"' style='width: "+(NODE_DIAMETER).toString()+"px; height: "+(NODE_DIAMETER).toString()+"px;'></div>");
+            $("#row"+i.toString()).append("<div id='("+i.toString()+","+j.toString()+")' class='"+stat_hash[status]+" node' style='width: "+(NODE_DIAMETER).toString()+"px; height: "+(NODE_DIAMETER).toString()+"px;'></div>");
         }
     }
     return tmp;
