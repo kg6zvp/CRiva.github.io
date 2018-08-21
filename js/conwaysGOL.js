@@ -32,6 +32,7 @@ class Node {
         this.neighbors_state1 = this.count_neighbors(MAP, 1);
         this.neighbors_state2 = this.count_neighbors(MAP, 2);
         this.total_neighbors = this.neighbors_state1 + this.neighbors_state2;
+        this.preprocess = this.status;
         /* NORMAL RULES
         Any live cell with fewer than two live neighbors dies, as if by under population.
         Any live cell with two or three live neighbors lives on to the next generation.
@@ -39,38 +40,38 @@ class Node {
         Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
         */
         if (this.total_neighbors < 2 && this.status == 1) {
-            this.status = 0;
+            this.preprocess = 0;
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('alive').addClass('dead');
         }
         // if ((this.neighbors == 2 || this.neighbors == 3) && this.status == 1) 
-        if (this.total_neighbors > 3 && this.status == 1) {
-            this.status = 0;
+        else if (this.total_neighbors > 3 && this.status == 1) {
+            this.preprocess = 0;
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('alive').addClass('dead');
         }
-        if (this.total_neighbors == 3 && this.status == 0) {
-            this.status = 1;
+        else if (this.total_neighbors == 3 && this.status == 0) {
+            this.preprocess = 1;
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('dead').addClass('alive');
         }
         /* EXTENDED RULES
-        Any live cell in state 2 with more than 2 neighbors dies by subtle overpopulation.
-        Any live cell in state 2 with less than 2 neighbor will die subtle underpopulation.
+        Any live cell in state 2 with more than 5 neighbors dies by subtle overpopulation.
+        Any live cell in state 2 with less than 3 neighbor will die subtle underpopulation.
         Any live cell in state 1 with exactly 1 state 2 neighbor will transform to state 2.
         Any dead cell with 5-6 state 2 neighbors will come alive.
         */
-        if (this.total_neighbors > 2 && this.status == 2) {
-            this.status = 0;
+        else if (this.total_neighbors > 5 && this.status == 2) {
+            this.preprocess = 0;
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('custom_life').addClass('dead');
         }
-        if (this.total_neighbors < 2 && this.status == 2) {
-            this.status = 0;
+        else if (this.total_neighbors < 3 && this.status == 2) {
+            this.preprocess = 0;
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('custom_life').addClass('dead');
         }
-        if (this.neighbors_state2 == 1 && this.status == 1) {
-            this.status = 2;
+        else if (this.neighbors_state2 == 1 && this.status == 1) {
+            this.preprocess = 2;
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('alive').addClass('custom_life');
         }
-        if ((this.neighbors_state2 > 4 && this.neighbors_state2 < 7) && this.status == 0) {
-            this.status = 2;
+        else if ((this.neighbors_state2 > 4 && this.neighbors_state2 < 7) && this.status == 0) {
+            this.preprocess = 2;
             $("#\\("+this.posx+"\\,"+this.posy+"\\)").removeClass('dead').addClass('custom_life');
         }
     }
@@ -116,6 +117,12 @@ function update(the_map){
     the_map.forEach(function(e){
         e.forEach(function(el){
             el.step(the_map);
+        });
+    });
+    the_map.forEach(function(e){
+        e.forEach(function(el){
+            // console.log(el.preprocess)
+            el.status = el.preprocess;
         });
     });
 }
