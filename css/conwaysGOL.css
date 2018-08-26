@@ -1,7 +1,7 @@
 :root{
-    --map_color: linear-gradient(to bottom right, #389AA3, #3AD7E6);
-    --alive_color: #4864B2;
-    --state2_color: #FFA555;
+    --map_color: linear-gradient(to bottom right, var(--base-color), var(--off_base2));
+    --alive_color: var(--off_base1);
+    --state2_color: var(--opposite_base);
 }
 
 .alive {
@@ -16,9 +16,19 @@
     border-radius: 4px;
 }
 
-.gol_row {
-    margin-top: -4px;
-    margin-bottom: -4px;
+@media screen and (max-height: 1000px){
+    .gol_row {
+        margin-top: -.7vh;
+        margin-bottom: -.7vh;
+        line-height: 0;
+    }
+}
+@media screen and (min-height: 1000px){
+    .gol_row {
+        margin-top: -.2vh;
+        margin-bottom: -.2vh;
+        line-height: 0;
+    }
 }
 
 .dead {

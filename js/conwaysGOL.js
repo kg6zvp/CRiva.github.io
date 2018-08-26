@@ -1,7 +1,10 @@
 let WIDTH = $(window).width()*3;
 let HEIGHT = $(window).height()*3;
-let NODE_SIZE = 70;
-let NODE_DIAMETER = Math.round(WIDTH/(NODE_SIZE*3));
+if ((HEIGHT > 0) || (WIDTH > 1000)) { NODE_SIZE = 60; ADDED_HEIGHT = 0;}
+if ((HEIGHT > 1000) || (WIDTH > 2000)) { NODE_SIZE = 50; ADDED_HEIGHT = 5;}
+if ((HEIGHT > 2000) || (WIDTH > 3000)) { NODE_SIZE = 40; ADDED_HEIGHT = 10;}
+if ((HEIGHT > 3000) || (WIDTH > 4000)) { NODE_SIZE = 30; ADDED_HEIGHT = 20;}
+let NODE_DIAMETER = (Math.round(WIDTH/(NODE_SIZE*3)) + ADDED_HEIGHT);
 let NODE_RADIUS = NODE_DIAMETER/2;
 let ROW_LENGTH = Math.floor(HEIGHT/NODE_DIAMETER);
 let COLUMN_LENGTH = Math.floor(WIDTH/NODE_DIAMETER);
