@@ -18,8 +18,8 @@
         <div class="title-screen">
             <div class="center-card">
                 <h1 class="card">Welcome!</h1>
-                <h3 class="card">Try clicking a square!</h3>
-                <p>What you see in the background is my Javascript implementation of <a href="http://www.conwaylife.com/w/index.php?title=Conway%27s_Game_of_Life" target="_blank">Conway's Game of Life</a> but with the ability for you to interact with it.</p>   
+                <h3 class="card lead">Try clicking a square!</h3>
+                <p>What you see in the background is my Javascript implementation of <a href="http://www.conwaylife.com/w/index.php?title=Conway%27s_Game_of_Life" target="_blank">Conway's Game of Life</a>, but with the ability for you to interact with it.</p>   
             </div>
         </div>
         <div class="projects info">
@@ -32,13 +32,14 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                         <h4 class="col-xs-8">History Object</h3>
-                                        <h4 class="col-xs-4 text-right">Python</h4>
+                                        <small class="col-xs-4 text-right">Python</small>
                                     </div>
                                 </div>
                                 <div class="panel-body">
-                                   <p>An Object implementation that tracks added and changed elements.</p>
+                                   <p>A Python Decorator that when used will track the history over time of all attributes of an Object. The Decorator will provide a <code>history</code> dictionary attribute for the object that contains the names of the object's attributes as the keys and a corresponding List of said attribute's values over time. <code>&lt;the_object&gt;.history[&lt;the_attribute&gt;][-1]</code> will always be the most recent change.</p>
                                    <pre>&gt;&gt;&gt; from history_object import History
 &gt;&gt;&gt; 
+&gt;&gt;&gt; # Usage
 &gt;&gt;&gt; @History()
 &gt;&gt;&gt; class T():
 &gt;&gt;&gt;     def __init__(self, x):
@@ -67,17 +68,80 @@
                             <div class="project">
                                 <div class="panel-heading">
                                     <div class="row">
-                                        <h4 class="col-xs-3">This Website</h3>
-                                        <h4 class="col-xs-9 text-right">HTML/CSS/JavaScript</h4>
+                                        <h4 class="col-xs-3">criva.github.io</h3>
+                                        <small class="col-xs-9 text-right">HTML/CSS/JavaScript</small>
                                     </div>
                                 </div>
                                 <div class="panel-body">
                                     <p>
-                                        This website serves as a place to show off some of the great programming work I've done over the years!
+                                        A website that serves as a place to show off some of the great programming work I've done over the years!
                                     </p>
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <a role="button" target="_blank" class="btn btn-default" href="https://github.com/CRiva/CRiva.github.io">View on GitHub</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix visible-xs-block"></div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-11 col-md-offset-0 col-xs-offset-1 col-xs-10">
+                            <div class="project">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <h4 class="col-xs-7">Samanage Slack Slash Command</h3>
+                                        <small class="col-xs-5 text-right">Ruby/Sinatra</small>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <p>
+                                        A simple Sinatra application that allows a user to create a new support ticket in Samanage using a slash command in Slack.
+                                    </p>
+                                    <pre>/ticket name = "Title for ticket", description = "Description for ticket", requester = user@domain.com, priority = Low</pre>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <a role="button" target="_blank" class="btn btn-default" href="https://github.com/CRiva/samanage_slack_command">View on GitHub</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-11 col-md-offset-0 col-xs-offset-1 col-xs-10">
+                            <div class="project">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <h4 class="col-xs-7">LXML to Dict</h3>
+                                        <small class="col-xs-5 text-right">Python</small>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <p>
+                                        A method allowing for the conversion of an lxml.objectify element to a Python Dictionary for those more familiar with a Dictionary object rather than an XML object.
+                                    </p>
+                                    <pre>&gt;&gt;&gt; from lxml_to_dict import lxml_to_dict
+&gt;&gt;&gt; 
+&gt;&gt;&gt; # Usage
+&gt;&gt;&gt; lxml_to_dict(&lt;the lxml.objectfy.Element&gt;)
+&gt;&gt;&gt;
+&gt;&gt;&gt; root = objectify.Element("root")       # &lt;root&gt;&lt;root&gt;
+&gt;&gt;&gt; b = objectify.SubElement(root, "b")    # &lt;root&gt;&lt;b&gt;&lt;/b&gt;&lt;root&gt;
+&gt;&gt;&gt; b = objectify.SubElement(root, "b")    # &lt;root&gt;&lt;b&gt;&lt;/b&gt;&lt;b&gt;&lt;/b&gt;&lt;root&gt;
+&gt;&gt;&gt; a = objectify.SubElement(root, "a")    # &lt;root&gt;&lt;b&gt;&lt;/b&gt;&lt;b&gt;&lt;/b&gt;&lt;a&gt;&lt;/a&gt;&lt;root&gt;
+&gt;&gt;&gt; lxml_to_dict(root)                     # {'root': {'b': None, 'b1': None, 'a': None}}</pre>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <a role="button" target="_blank" class="btn btn-default" href="https://pypi.org/project/lxml-to-dict/">View on PyPI</a>
+                                        </div>
+                                        <div class="col-xs-6 text-right">
+                                            <a role="button" target="_blank" class="btn btn-default" href="https://github.com/CRiva/lxml_to_dict">View on GitHub</a>
                                         </div>
                                     </div>
                                 </div>
