@@ -19,21 +19,21 @@ body {
     background-color: transparent;
     height: 100%;
     pointer-events: none;
-    overflow-x: 
+    overflow-y: scroll;
+}
+
+.projects {
+    pointer-events: auto;
+}
+
+.image {
+    width: 100%;
+    max-height: 500px;
+    float: center;
 }
 
 .map{
     pointer-events: all;
-}
-
-.main {
-    
-}
-
-.info {
-    background: linear-gradient(to bottom right, white, #f7f7f7);
-    height: 1000px;
-    pointer-events: auto;
 }
 
 .title-screen {
@@ -41,28 +41,114 @@ body {
     margin-right: auto;
     pointer-events: none;
     margin-top: 35vh;
-    margin-bottom: 30vh;
+    margin-bottom: 25vh;
     width: 50%;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
+@media only screen and (max-width: 750px) {
+    .title-screen {
+        width: 75%;
+        margin-bottom: 20vh;
+    }
+}
+
+.grid-sizer, .grid-item {
+    width: 100%;
+    height: auto;
+}
+
+@media only screen and (min-width: 750px) {
+    .grid-sizer, .grid-item {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 1500px) {
+    .grid-sizer, .grid-item {
+        width: 33.3%;
+    }
+}
+
+.title {
+    font-family: Verdana;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.2em;
+    text-transform: capitalize;
+    letter-spacing: 0px;
+    font-size: 32px;
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 0 25px 25px 0;
+    color: black;
+    pointer-events: auto;
+}
+@media only screen and (max-width: 500px) {
+    .title {
+        font-size: 20px;
+    }
+}
+
+.link {
+    font-family: Verdana;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 1.2em;
+    text-transform: capitalize;
+    letter-spacing: 0px;
+    font-size: 21px;
+    color: black;
+}
+@media only screen and (max-width: 500px) {
+    .link {
+        font-size: 15px;
+    }
+}
+
+.link-background {
+    margin-top: 26px;
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 25px 0 0 25px;
+}
+
+.link-background-2 {
+    margin-top: 26px;
+    border: 1px solid white;
+    background-color: white;
+}
 
 .project {
     /*border-color: linear-gradient(to bottom right, white, #F18B30);
     border: 1px solid transparent;*/
-    margin-bottom: 20px;
+    margin: 3%;
     background: var(--off_base1);
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
     box-shadow: 0 1px 1px 0;
+    height: auto;
 }
 
 .center-card {
+    text-align: center;
     pointer-events: auto;
     padding: 5% 10% 5% 10%;
     /*background: linear-gradient(to bottom right, #43CA54, #3EDF52);*/
     background: white;
     border-radius: 5px;
     box-shadow: 0 3px 7px 0;
+}
+
+.company-logo {
+    max-width: 100%;
+    max-height: 64px;
+    vertical-align: middle;
+    margin: 10px;
+}
+
+.social-icon {
+    max-height: 64px;
+    max-width: 64px;
 }

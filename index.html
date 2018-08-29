@@ -3,11 +3,11 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Connor Riva</title>
-<link rel="stylesheet" type="text/css" href="css/colorscheme.css">
 <link rel="stylesheet" type="text/css" href="css/conwaysGOL.css">
 <link rel="stylesheet" type="text/css" href="css/layout.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="js/conwaysGOL.js"></script>
 </head>
@@ -15,6 +15,23 @@
     <div class="map" id="map">
     </div>
     <div class="main">
+        <div class="row" style="vertical-align:middle;">
+            <div class="col-xs-4 text-center">
+                <a href="https://connorriva.com"><h2 class="title">Connor Riva</h2></a>
+            </div>
+            <div class="col-xs-8" style="height: auto; pointer-events: auto;">
+                <div class="row">
+                    <div class="col-sm-8 col-xs-2"></div>
+                    <div class="col-sm-2 col-xs-5 link-background text-center">
+                        <a href="https://connorriva.com/overview"><h4 class="link">My Art</h4></a>
+                    </div>
+                    <div class="col-sm-2 col-xs-5 link-background-2 text-center">
+                        <a href="https://connorriva.com/about/"><h4 class="link">About</h4></a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
         <div class="title-screen">
             <div class="center-card">
                 <h1 class="card">Welcome!</h1>
@@ -22,111 +39,97 @@
                 <p>What you see in the background is my Javascript implementation of <a href="http://www.conwaylife.com/w/index.php?title=Conway%27s_Game_of_Life" target="_blank">Conway's Game of Life</a>, but with the ability for you to interact with it.</p>   
             </div>
         </div>
-        <div class="projects info">
-            <br>
-            <div class="row">
-                <div class="col-md-6 col-xs-12">
-                    <div class="row">
-                        <div class="col-md-11 col-md-offset-1 col-xs-10 col-xs-offset-1">
-                            <div class="project">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <h4 class="col-xs-8">History Object</h3>
-                                        <small class="col-xs-4 text-right">Python</small>
-                                    </div>
+        <div class="projects">
+            <h3 class="text-center lead">Projects I've worked on</h3>
+            <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer" }'>
+                <div class="grid-sizer"></div>
+                <div class="grid-item">
+                    <div class="project">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <h4 class="col-xs-8">History Object</h4>
+                                <small class="col-xs-4 text-right">Python</small>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                           <p>A Python Decorator that when used will track the history over time of all attributes of an Object. The Decorator will provide a <code>history</code> dictionary attribute for the object that contains the names of the object's attributes as the keys and a corresponding List of said attribute's values over time. <code>&lt;the_object&gt;.history[&lt;the_attribute&gt;][-1]</code> will always be the most recent change.</p>
+                           <pre>&gt;&gt;&gt; from history_object import History
+        &gt;&gt;&gt; 
+        &gt;&gt;&gt; # Usage
+        &gt;&gt;&gt; @History()
+        &gt;&gt;&gt; class T():
+        &gt;&gt;&gt;     def __init__(self, x):
+        &gt;&gt;&gt;        self.x = x
+        &gt;&gt;&gt;
+        &gt;&gt;&gt; test = T("Hello World")
+        &gt;&gt;&gt; test.history['x']  # ["Hello World"]
+        &gt;&gt;&gt; test.x = "Goodbye World"
+        &gt;&gt;&gt; test.history['x']  # ["Hello World", "Goodbye World"]</pre>
+                            <div class="row">
+                               <div class="col-xs-6">
+                                    <a role="button" target="_blank" class="btn btn-default" href="https://pypi.org/project/history-object/">View on PyPI</a>
                                 </div>
-                                <div class="panel-body">
-                                   <p>A Python Decorator that when used will track the history over time of all attributes of an Object. The Decorator will provide a <code>history</code> dictionary attribute for the object that contains the names of the object's attributes as the keys and a corresponding List of said attribute's values over time. <code>&lt;the_object&gt;.history[&lt;the_attribute&gt;][-1]</code> will always be the most recent change.</p>
-                                   <pre>&gt;&gt;&gt; from history_object import History
-&gt;&gt;&gt; 
-&gt;&gt;&gt; # Usage
-&gt;&gt;&gt; @History()
-&gt;&gt;&gt; class T():
-&gt;&gt;&gt;     def __init__(self, x):
-&gt;&gt;&gt;        self.x = x
-&gt;&gt;&gt;
-&gt;&gt;&gt; test = T("Hello World")
-&gt;&gt;&gt; test.history['x']  # ["Hello World"]
-&gt;&gt;&gt; test.x = "Goodbye World"
-&gt;&gt;&gt; test.history['x']  # ["Hello World", "Goodbye World"]</pre>
-                                    <div class="row">
-                                       <div class="col-xs-6">
-                                            <a role="button" target="_blank" class="btn btn-default" href="https://pypi.org/project/history-object/">View on PyPI</a>
-                                        </div>
-                                        <div class="col-xs-6 text-right">
-                                            <a role="button" target="_blank" class="btn btn-default" href="https://github.com/CRiva/python-history-object">View on GitHub</a>
-                                        </div>
-                                    </div>
+                                <div class="col-xs-6 text-right">
+                                    <a role="button" target="_blank" class="btn btn-default" href="https://github.com/CRiva/python-history-object">View on GitHub</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xs-12">
-                    <div class="row">
-                        <div class="col-md-11 col-md-offset-0 col-xs-offset-1 col-xs-10">
-                            <div class="project">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <h4 class="col-xs-3">criva.github.io</h3>
-                                        <small class="col-xs-9 text-right">HTML/CSS/JavaScript</small>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <p>
-                                        A website that serves as a place to show off some of the great programming work I've done over the years!
-                                    </p>
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <a role="button" target="_blank" class="btn btn-default" href="https://github.com/CRiva/CRiva.github.io">View on GitHub</a>
-                                        </div>
-                                    </div>
+                <div class="grid-item">
+                    <div class="project">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <h4 class="col-xs-3">criva.github.io</h4>
+                                <small class="col-xs-9 text-right">HTML/CSS/JavaScript</small>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                A website that serves as a place to show off some of the great programming work I've done over the years!
+                            </p>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <a role="button" target="_blank" class="btn btn-default" href="https://github.com/CRiva/CRiva.github.io">View on GitHub</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="clearfix visible-xs-block"></div>
-                <div class="col-md-6 col-xs-12">
-                    <div class="row">
-                        <div class="col-md-11 col-md-offset-0 col-xs-offset-1 col-xs-10">
-                            <div class="project">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <h4 class="col-xs-7">Samanage Slack Slash Command</h3>
-                                        <small class="col-xs-5 text-right">Ruby/Sinatra</small>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <p>
-                                        A simple Sinatra application that allows a user to create a new support ticket in Samanage using a slash command in Slack.
-                                    </p>
-                                    <pre>/ticket name = "Title for ticket", description = "Description for ticket", requester = user@domain.com, priority = Low</pre>
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <a role="button" target="_blank" class="btn btn-default" href="https://github.com/CRiva/samanage_slack_command">View on GitHub</a>
-                                        </div>
-                                    </div>
+                <div class="grid-item">
+                    <div class="project">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <h4 class="col-xs-7">Samanage Slack Slash Command</h4>
+                                <small class="col-xs-5 text-right">Ruby/Sinatra</small>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                A simple Sinatra application that allows a user to create a new support ticket in Samanage using a slash command in Slack.
+                            </p>
+                            <pre>/ticket name = "Title for ticket", description = "Description for ticket", requester = user@domain.com, priority = Low</pre>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <a role="button" target="_blank" class="btn btn-default" href="https://github.com/CRiva/samanage_slack_command">View on GitHub</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xs-12">
-                    <div class="row">
-                        <div class="col-md-11 col-md-offset-0 col-xs-offset-1 col-xs-10">
-                            <div class="project">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <h4 class="col-xs-7">LXML to Dict</h3>
-                                        <small class="col-xs-5 text-right">Python</small>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <p>
-                                        A method allowing for the conversion of an lxml.objectify element to a Python Dictionary for those more familiar with a Dictionary object rather than an XML object.
-                                    </p>
-                                    <pre>&gt;&gt;&gt; from lxml_to_dict import lxml_to_dict
+                <div class="grid-item">
+                    <div class="project">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <h4 class="col-xs-7">LXML to Dict</h4>
+                                <small class="col-xs-5 text-right">Python</small>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                A method allowing for the conversion of an lxml.objectify element to a Python Dictionary for those more familiar with a Dictionary object rather than an XML object.
+                            </p>
+                            <pre>&gt;&gt;&gt; from lxml_to_dict import lxml_to_dict
 &gt;&gt;&gt; 
 &gt;&gt;&gt; # Usage
 &gt;&gt;&gt; lxml_to_dict(&lt;the lxml.objectfy.Element&gt;)
@@ -136,20 +139,91 @@
 &gt;&gt;&gt; b = objectify.SubElement(root, "b")    # &lt;root&gt;&lt;b&gt;&lt;/b&gt;&lt;b&gt;&lt;/b&gt;&lt;root&gt;
 &gt;&gt;&gt; a = objectify.SubElement(root, "a")    # &lt;root&gt;&lt;b&gt;&lt;/b&gt;&lt;b&gt;&lt;/b&gt;&lt;a&gt;&lt;/a&gt;&lt;root&gt;
 &gt;&gt;&gt; lxml_to_dict(root)                     # {'root': {'b': None, 'b1': None, 'a': None}}</pre>
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <a role="button" target="_blank" class="btn btn-default" href="https://pypi.org/project/lxml-to-dict/">View on PyPI</a>
-                                        </div>
-                                        <div class="col-xs-6 text-right">
-                                            <a role="button" target="_blank" class="btn btn-default" href="https://github.com/CRiva/lxml_to_dict">View on GitHub</a>
-                                        </div>
-                                    </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <a role="button" target="_blank" class="btn btn-default" href="https://pypi.org/project/lxml-to-dict/">View on PyPI</a>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    <a role="button" target="_blank" class="btn btn-default" href="https://github.com/CRiva/lxml_to_dict">View on GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="project">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <h4 class="col-xs-7">Prints2Go</h4>
+                                <small class="col-xs-5 text-right">Ruby (Ruby on Rails)</small>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                A web application for print requests from the repographics print lab at Westmont College. 
+
+                                This includes a homepage where users can see their print jobs with a status (To be printed, To be billed, completed), a form for filling in requests and uploading files, and a page to view the costs for each form attribute. 
+                            </p>
+                            <a href="https://raw.githubusercontent.com/CRiva/Prints2Go/master/public/images/HomePage.png"><img src="images/Prints2Go/HomePage.png" alt="Prints2Go HomePage" class="image"></a>
+                            <br>
+                            <br>
+                            <a href="https://raw.githubusercontent.com/CRiva/Prints2Go/master/public/images/Form.png"><img src="images/Prints2Go/Form.png" alt="Prints2Go Form" class="image"></a>
+                            <br>
+                            <br>
+                            <a href="https://raw.githubusercontent.com/CRiva/Prints2Go/master/public/images/CostScreen.png"><img src="images/Prints2Go/CostScreen.png" alt="Prints2Go Costs" class="image"></a>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <a role="button" target="_blank" class="btn btn-default" href="https://github.com/CRiva/Prints2Go">View on GitHub</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <hr>
+            <h3 class="text-center lead">Companies I've worked for</h3>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12 text-center" style="vertical-align: middle;">
+                    <a href="https://www.hytrust.com/" target="_blank"><img class="company-logo" src="images/Companies/Hytrust.jpg"></a>
+                </div>
+                <div class="col-sm-6 col-xs-12 text-center" style="vertical-align: middle;">
+                    <a href="https://www.westmont.edu" target="_blank"><img class="company-logo" src="images/Companies/WestmontLogo.jpg"></a>
+                </div>
+            </div>
         </div>
     </div>
 </body>
+<footer class="page-footer" style="pointer-events: auto;">
+    <div class="container-fluid text-center">
+        <hr>
+        <br><br>
+        <div class="row">
+            <div class="col-xs-3">
+                <h5 class="text-uppercase">Connor Riva</h5>
+                <p>Look me up on social media!</p>
+            </div>
+            <div class="col-xs-3">
+                <a href="https://github.com/CRiva">
+                    <img class="social-icon" src="images/Social/GitHub.png" alt="GitHub">
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a href="https://www.instagram.com/studioriva/">
+                    <img class="social-icon" src="images/Social/Instagram.png" alt="Instagram">
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a href="https://www.linkedin.com/in/connorriva/">
+                    <img class="social-icon" src="images/Social/LinkedIn.png" alt="LinkedIn">
+                </a>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="footer-copyright text-center py-3">© 2018 Connor Riva:
+        <a href="https://connorriva.com">ConnorRiva.com</a>
+    </div>
+</footer>
+</html>
