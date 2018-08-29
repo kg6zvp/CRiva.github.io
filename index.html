@@ -54,17 +54,17 @@
                         <div class="panel-body">
                            <p>A Python Decorator that when used will track the history over time of all attributes of an Object. The Decorator will provide a <code>history</code> dictionary attribute for the object that contains the names of the object's attributes as the keys and a corresponding List of said attribute's values over time. <code>&lt;the_object&gt;.history[&lt;the_attribute&gt;][-1]</code> will always be the most recent change.</p>
                            <pre>&gt;&gt;&gt; from history_object import History
-        &gt;&gt;&gt; 
-        &gt;&gt;&gt; # Usage
-        &gt;&gt;&gt; @History()
-        &gt;&gt;&gt; class T():
-        &gt;&gt;&gt;     def __init__(self, x):
-        &gt;&gt;&gt;        self.x = x
-        &gt;&gt;&gt;
-        &gt;&gt;&gt; test = T("Hello World")
-        &gt;&gt;&gt; test.history['x']  # ["Hello World"]
-        &gt;&gt;&gt; test.x = "Goodbye World"
-        &gt;&gt;&gt; test.history['x']  # ["Hello World", "Goodbye World"]</pre>
+&gt;&gt;&gt; 
+&gt;&gt;&gt; # Usage
+&gt;&gt;&gt; @History()
+&gt;&gt;&gt; class T():
+&gt;&gt;&gt;     def __init__(self, x):
+&gt;&gt;&gt;        self.x = x
+&gt;&gt;&gt;
+&gt;&gt;&gt; test = T("Hello World")
+&gt;&gt;&gt; test.history['x']  # ["Hello World"]
+&gt;&gt;&gt; test.x = "Goodbye World"
+&gt;&gt;&gt; test.history['x']  # ["Hello World", "Goodbye World"]</pre>
                             <div class="row">
                                <div class="col-xs-6">
                                     <a role="button" target="_blank" class="btn btn-default" href="https://pypi.org/project/history-object/">View on PyPI</a>
