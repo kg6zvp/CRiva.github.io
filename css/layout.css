@@ -26,10 +26,11 @@ body {
     pointer-events: auto;
 }
 
-.image {
+.image img {
     width: 100%;
-    max-height: 500px;
+    height: auto;
     float: center;
+    text-align: center;
 }
 
 .map{
