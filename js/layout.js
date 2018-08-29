@@ -5,4 +5,5 @@ $(document).ready(function() {
 
 function back_to_normal() {
     $(".projects").css("width","100%")
+    $(window).trigger('resize');
 }
