@@ -152,3 +152,7 @@ body {
     max-height: 64px;
     max-width: 64px;
 }
+
+div#preload { 
+    display: none; 
+}
