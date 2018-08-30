@@ -42,18 +42,31 @@ body {
     margin-right: auto;
     pointer-events: none;
     margin-top: 35vh;
-    margin-bottom: 25vh;
+    margin-bottom: 35vh;
     width: 50%;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 750px) and (min-width: 719px) {
     .title-screen {
         width: 75%;
-        margin-bottom: 20vh;
+        margin-bottom: 37vh;
     }
 }
+@media only screen and (max-width: 719px){
+    .title-screen {
+        width: 75%;
+         margin-bottom: 25vh;
+    }
+}
+@media only screen and (min-width: 1500px) {
+    .title-screen {
+        width: 50%;
+        margin-bottom: 32vh;
+    }
+}
+
 
 .grid-sizer, .grid-item {
     width: 100%;

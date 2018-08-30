@@ -54,7 +54,8 @@
                         </div>
                         <div class="panel-body">
                            <p>A Python Decorator that when used will track the history over time of all attributes of an Object. The Decorator will provide a <code>history</code> dictionary attribute for the object that contains the names of the object's attributes as the keys and a corresponding List of said attribute's values over time. <code>&lt;the_object&gt;.history[&lt;the_attribute&gt;][-1]</code> will always be the most recent change.</p>
-                           <pre class="prettyprint">&gt;&gt;&gt; from history_object import History
+                           <pre class="prettyprint">
+&gt;&gt;&gt; from history_object import History
 &gt;&gt;&gt; 
 &gt;&gt;&gt; # Usage
 &gt;&gt;&gt; @History()
@@ -130,7 +131,8 @@
                             <p>
                                 A method allowing for the conversion of an lxml.objectify element to a Python Dictionary for those more familiar with a Dictionary object rather than an XML object.
                             </p>
-                            <pre class="prettyprint">&gt;&gt;&gt; from lxml_to_dict import lxml_to_dict
+                            <pre class="prettyprint">
+&gt;&gt;&gt; from lxml_to_dict import lxml_to_dict
 &gt;&gt;&gt; 
 &gt;&gt;&gt; # Usage
 &gt;&gt;&gt; lxml_to_dict(&lt;the lxml.objectfy.Element&gt;)
